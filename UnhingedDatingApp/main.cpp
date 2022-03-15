@@ -80,3 +80,21 @@
 //    std::cout << std::endl;
 //    return true;
 //}
+
+#include <iostream>
+#include "AttributeTranslator.h"
+#include "MemberDatabase.h"
+#include "PersonProfile.h"
+#include "MatchMaker.h"
+
+using namespace std;
+
+int main() {
+	AttributeTranslator at;;
+	at.Load("translator.txt");
+	MemberDatabase db;
+	db.LoadDatabase("members.txt");
+
+	MatchMaker m(db, at);
+	m.IdentifyRankedMatches("AbFow2483@charter.net", 10);
+}

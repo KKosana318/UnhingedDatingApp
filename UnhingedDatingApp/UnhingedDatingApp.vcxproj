@@ -149,9 +149,12 @@
   <ItemGroup>
     <ClCompile Include="AttributeTranslator.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatchMaker.cpp" />
+    <ClCompile Include="MemberDatabase.cpp" />
     <ClCompile Include="PersonProfile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="members.txt" />
     <Text Include="translator.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,19 +3,18 @@
 
 #include <map>
 #include <string>
-#include "provided.h"
-
-using namespace std;
+#include <iostream>
 
 template <typename ValueType>
 class RadixTree {
 public:
 	RadixTree();
 	~RadixTree();
-	void insert(string key, const ValueType& value);
-	ValueType* search(string key) const;
+	void insert(std::string key, const ValueType& value);
+	ValueType* search(std::string key) const;
+	void print();
 private:
-	map<string, ValueType> m_tree;
+	std::map<std::string, ValueType> m_tree;
 };
 
 template <typename ValueType>
@@ -29,21 +28,27 @@ RadixTree<ValueType>::~RadixTree() {
 }
 
 template <typename ValueType>
-void RadixTree<ValueType>::insert(string key, const ValueType& value) {
-	m_tree.insert(key, value);
+void RadixTree<ValueType>::insert(std::string key, const ValueType& value) {
+	m_tree.insert({ key, value });
 }
 
 template <typename ValueType>
-ValueType* RadixTree<ValueType>::search(string key) const {
-	map<string, ValueType>::iterator i = m_tree.begin();
-
-	for (; i != m_tree.end(); i++) {
-		if ((*i)->first == key) {
-			return &((*i)->second);
-		}
+ValueType* RadixTree<ValueType>::search(std::string key) const {
+	if (m_tree.find(key) != m_tree.end()) {
+		return (ValueType*)&(m_tree.find(key)->second);
 	}
 
-	return nullptr;
+	return nullptr; 
 }
 
+template <typename ValueType>
+void RadixTree<ValueType>::print() {
+	int counter = 0;
+	for (typename std::map<std::string, ValueType>::iterator i = m_tree.begin(); i != m_tree.end(); i++) {
+		if (counter++ > 30) {
+			return;
+		}
+		std::cout << (i->first) << std::endl;
+	}
+}
 #endif

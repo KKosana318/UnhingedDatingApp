@@ -1,19 +1,19 @@
-#ifndef PERSONPROFILE
-#define PERSONPROFILE
+#ifndef ATTRIBUTETRANSLATOR
+#define ATTRIBUTETRANSLATOR
 
 #include <string>
 #include <vector>
 #include "provided.h"
-
-using namespace std;
+#include "RadixTree.h"
 
 class AttributeTranslator {
 public:
 	AttributeTranslator();
 	~AttributeTranslator();
-	bool Load(string filename);
-	vector<AttValPair> FindCompatibleAttValPair(const AttValPair& source) const;
-
+	bool Load(std::string filename);
+	std::vector<AttValPair> FindCompatibleAttValPairs(const AttValPair& source) const;
+private:
+	RadixTree<std::vector<AttValPair>> m_translator;
 };
 
 #endif
